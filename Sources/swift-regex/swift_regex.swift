@@ -18,12 +18,12 @@ public struct Regexp {
         }
 
         public subscript(_ index: Int) -> Substring?! {
-            // TODO: should negative do something?
             guard index >= 0 && index < groups else { return nil }
             let range = result.range(at: index + 1)
             guard range.location != NSNotFound else { return .some(nil) }
             return string[Range(range, in: string)!]
         }
+
         public mutating func next() -> Substring?? {
             guard index < groups else { return nil }
             let sub = self[index]
